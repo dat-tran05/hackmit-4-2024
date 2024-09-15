@@ -6,11 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Feedback } from "@/components/feedback/feedback";
 import { Transcript } from "@/components/feedback/transcript";
 import { PossibleQuestions } from "@/components/feedback/possible-questions";
-import { useRouter, useSearchParams } from "next/navigation";
-
-interface FeedbackPageProps {
-  videoUrl: string;
-}
+import { useSearchParams } from "next/navigation";
 
 export default function FeedbackPage() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -75,7 +71,7 @@ export default function FeedbackPage() {
                 togglePlayPause={togglePlayPause}
               />
             </CardContent>
-          </Card>   
+          </Card>
         </motion.div>
         <div className="col-span-1 space-y-8">
           <motion.div
