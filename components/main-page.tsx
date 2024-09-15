@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Camera, Upload, MonitorUp, Mic } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function Component() {
   const [dragActive, setDragActive] = useState(false);
+  const router = useRouter();
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -23,8 +24,19 @@ export default function Component() {
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      // Handle file upload here
-      console.log("File dropped:", e.dataTransfer.files[0].name);
+      const file = e.dataTransfer.files[0];
+      console.log("File dropped:", file.name);
+
+      // Navigating to new page for processing and display
+      // Create a URL for the file
+      const fileUrl = URL.createObjectURL(file);
+
+      // Construct URL with query parameters
+      const url = new URL('/feedback', window.location.origin);
+      url.searchParams.set('fileUrl', fileUrl);
+
+      // Navigate to the new URL
+      router.push(url.href);
     }
   };
 
@@ -119,9 +131,12 @@ export default function Component() {
         ))}
       </motion.div>
       <footer className="absolute bottom-4 text-sm text-gray-500">
-        An open source project by OralAI |{" "}
-        <a href="#" className="underline">
-          Terms
+        An open source project by HackMIT 2024 |{" "}
+        <a
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          className="underline"
+        >
+          im dying chat
         </a>
       </footer>
     </div>

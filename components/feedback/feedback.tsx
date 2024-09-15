@@ -11,9 +11,9 @@ export function Feedback({ videoUrl, isPlaying, togglePlayPause }: FeedbackProps
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-purple-700">Feedback</h2>
-      {/* <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden shadow-inner">
+      <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden shadow-inner">
         <video src={videoUrl} className="w-full h-full object-cover" />
-      </div> */}
+      </div>
       <div className="flex justify-center space-x-4">
         <Button size="icon" variant="outline" onClick={() => console.log("Skip backward")}>
           <SkipBack className="h-4 w-4" />

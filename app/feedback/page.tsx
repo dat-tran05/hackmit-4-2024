@@ -1,18 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Feedback } from "@/components/feedback/feedback";
 import { Transcript } from "@/components/feedback/transcript";
 import { PossibleQuestions } from "@/components/feedback/possible-questions";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface FeedbackPageProps {
   videoUrl: string;
 }
 
-export default function FeedbackPage({ videoUrl }: FeedbackPageProps) {
+export default function FeedbackPage() {
   const [isPlaying, setIsPlaying] = useState(false);
+
+  // For Drag Drop
+  const searchParams = useSearchParams();
+  const [fileData, setFileData] = useState<Blob | null>(null); // Allow Blob or null
+  const [fileUrl, setFileUrl] = useState<string | null>(null); // Allow Blob or null
+  const [loading, setLoading] = useState(true); // State to track loading
+  const [error, setError] = useState<string | null>(null); // State to track errors
+
+  useEffect(() => {
+    // Retrieve the fileUrl from search params
+    const fileUrl = searchParams.get("fileUrl");
+    setFileUrl(fileUrl);
+
+    if (fileUrl) {
+      fetch(fileUrl)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`Failed to fetch the file: ${res.statusText}`);
+          }
+          return res.blob(); // Convert the response to a blob (file object)
+        })
+        .then((blob) => {
+          setFileData(blob); // Store the blob in state
+          setLoading(false); // Set loading to false when data is ready
+        })
+        .catch((err) => {
+          console.error("Error fetching file:", err);
+          setError(err.message); // Capture any fetch errors
+          setLoading(false); // Stop loading
+        });
+    } else {
+      setLoading(false); // Set loading to false if no fileUrl is present
+      setError("No file URL provided"); // Handle case when no fileUrl is provided
+    }
+  }, [searchParams]); // Update effect if searchParams change
+
+  if (loading) return <p>Loading file...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -31,14 +70,13 @@ export default function FeedbackPage({ videoUrl }: FeedbackPageProps) {
           <Card className="h-full shadow-lg">
             <CardContent className="p-6">
               <Feedback
-                videoUrl={videoUrl}
+                videoUrl={fileUrl!}
                 isPlaying={isPlaying}
                 togglePlayPause={togglePlayPause}
               />
             </CardContent>
           </Card>
         </motion.div>
-
         <div className="col-span-1 space-y-8">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
