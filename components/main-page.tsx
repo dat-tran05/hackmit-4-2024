@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Camera, Upload, MonitorUp } from "lucide-react";
+import { Camera, Upload, MonitorUp, Mic } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -31,6 +31,16 @@ export default function Component() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-100 to-white overflow-hidden">
       <motion.div
+        className="absolute top-4 left-4 flex items-center space-x-2 z-20"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Mic className="h-8 w-8 text-purple-600" />
+        <h1 className="text-2xl font-bold text-purple-600">OralAI</h1>
+      </motion.div>
+
+      <motion.div
         className="text-center space-y-6 relative z-10"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +50,7 @@ export default function Component() {
           Add a video.
         </h1>
         <h2 className="text-3xl font-bold text-purple-600 mb-8">
-          Get a shareable link to stream it.
+          Get instant feedback for improvement.
         </h2>
         <motion.div
           className={`border-4 border-dashed rounded-lg p-8 transition-colors ${
@@ -109,12 +119,9 @@ export default function Component() {
         ))}
       </motion.div>
       <footer className="absolute bottom-4 text-sm text-gray-500">
-        An open source project for HackMIT 2024 |{" "}
-        <a
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          className="underline"
-        >
-          I'm dying chat
+        An open source project by OralAI |{" "}
+        <a href="#" className="underline">
+          Terms
         </a>
       </footer>
     </div>
