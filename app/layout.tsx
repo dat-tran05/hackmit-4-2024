@@ -21,7 +21,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "OralAI",
+  title: "OrateAI",
   description: "Curated real-time feedback on presentation/speaker video input",
 };
 

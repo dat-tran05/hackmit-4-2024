@@ -25,7 +25,7 @@ export default function Component() {
           >
             <Mic className="h-12 w-12 text-purple-600" />
           </motion.div>
-          <h1 className="text-5xl font-bold text-purple-600">OralAI</h1>
+          <h1 className="text-5xl font-bold text-purple-600">OrateAI</h1>
         </motion.div>
         <motion.p
           className="text-xl text-gray-600 max-w-md"

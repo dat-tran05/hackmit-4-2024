@@ -32,8 +32,8 @@ export default function Component() {
       const fileUrl = URL.createObjectURL(file);
 
       // Construct URL with query parameters
-      const url = new URL('/feedback', window.location.origin);
-      url.searchParams.set('fileUrl', fileUrl);
+      const url = new URL("/feedback", window.location.origin);
+      url.searchParams.set("fileUrl", fileUrl);
 
       // Navigate to the new URL
       router.push(url.href);
@@ -49,7 +49,7 @@ export default function Component() {
         transition={{ duration: 0.8 }}
       >
         <Mic className="h-8 w-8 text-purple-600" />
-        <h1 className="text-2xl font-bold text-purple-600">OralAI</h1>
+        <h1 className="text-2xl font-bold text-purple-600">OrateAI</h1>
       </motion.div>
 
       <motion.div
@@ -64,6 +64,9 @@ export default function Component() {
         <h2 className="text-3xl font-bold text-purple-600 mb-8">
           Get instant feedback for improvement.
         </h2>
+        {/* <motion.input
+          className={"border-4 rounded-lg p-1 outline-purple-600 transition-colors"}
+        /> */}
         <motion.div
           className={`border-4 border-dashed rounded-lg p-8 transition-colors ${
             dragActive ? "border-purple-500 bg-purple-100" : "border-gray-300"
