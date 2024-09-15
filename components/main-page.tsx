@@ -109,7 +109,7 @@ export default function Component() {
         ))}
       </motion.div>
       <footer className="absolute bottom-4 text-sm text-gray-500">
-        An open source project by OralAI |{" "}
+        An open source project for HackMIT 2024 |{" "}
         <a
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           className="underline"
