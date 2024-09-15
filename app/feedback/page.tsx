@@ -75,7 +75,7 @@ export default function FeedbackPage() {
                 togglePlayPause={togglePlayPause}
               />
             </CardContent>
-          </Card>
+          </Card>   
         </motion.div>
         <div className="col-span-1 space-y-8">
           <motion.div
